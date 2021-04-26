@@ -62,13 +62,19 @@ namespace Lab2
                 }
                 foreach (Claster claster in clasters)
                 {
+                    Console.Write($"Claster with a center in ({claster.Z.X}, {claster.Z.Y}) has points: ");
+                    if (!claster.Points.Any())
+                    {
+                        Console.WriteLine("none");
+                        continue;
+                    }
                     foreach (Point point in claster.Points)
                     {
                         Console.Write($"({point.X}, {point.Y}) ");
                     }
                     Console.WriteLine();
                 }
-                Console.Write("z = ");
+                Console.Write("\nz = ");
                 foreach (var claster in clasters)
                 {
                     Console.Write($"({claster.Z.X}, {claster.Z.Y}) ");
