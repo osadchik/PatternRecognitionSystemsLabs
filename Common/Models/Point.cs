@@ -1,6 +1,6 @@
-﻿namespace Lab2.Models
+﻿namespace Common.Models
 {
-    class Point
+    public class Point
     {
         public double X { get; set; }
         public double Y { get; set; }

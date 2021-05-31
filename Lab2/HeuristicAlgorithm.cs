@@ -1,4 +1,4 @@
-﻿using Lab2.Models;
+﻿using Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +46,7 @@ namespace Lab2
                     bool isInClaster = false;
                     foreach (Claster claster in clasters)
                     {
-                        xMinusZ = point - claster.Z;
+                        xMinusZ = point - claster.Center;
                         d = Math.Sqrt(Math.Pow(xMinusZ.X, 2) + Math.Pow(xMinusZ.Y, 2));
                         if(d <= number)
                         {
@@ -62,7 +62,7 @@ namespace Lab2
                 }
                 foreach (Claster claster in clasters)
                 {
-                    Console.Write($"Claster with a center in ({claster.Z.X}, {claster.Z.Y}) has points: ");
+                    Console.Write($"Claster with a center in ({claster.Center.X}, {claster.Center.Y}) has points: ");
                     if (!claster.Points.Any())
                     {
                         Console.WriteLine("none");
@@ -77,7 +77,7 @@ namespace Lab2
                 Console.Write("\nz = ");
                 foreach (var claster in clasters)
                 {
-                    Console.Write($"({claster.Z.X}, {claster.Z.Y}) ");
+                    Console.Write($"({claster.Center.X}, {claster.Center.Y}) ");
                 }
                 Console.WriteLine();
                 Console.WriteLine($"Number of clusters: {clasters.Count}");
@@ -97,7 +97,7 @@ namespace Lab2
 
                     if(clasters.Any() && clasters.IndexOf(claster) < clasters.Count - 1)
                     {
-                        Console.WriteLine($"Distance to the next Z is {GetDistance(claster.Z, clasters[clasters.IndexOf(claster) + 1].Z)}");
+                        Console.WriteLine($"Distance to the next Z is {GetDistance(claster.Center, clasters[clasters.IndexOf(claster) + 1].Center)}");
                     }
 
                     Console.WriteLine("-----------------------------------------------------");
@@ -113,7 +113,7 @@ namespace Lab2
             double sum = 0.0, distance;
             foreach (Point point in claster.Points)
             {
-                distance = GetDistance(point, claster.Z);
+                distance = GetDistance(point, claster.Center);
                 sum += distance;
             }
 
@@ -125,7 +125,7 @@ namespace Lab2
             double sum = 0.0, disperse;
             foreach (Point point in claster.Points)
             {
-                sum += Math.Pow(GetDistance(point, claster.Z) - averageDistTo, 2);
+                sum += Math.Pow(GetDistance(point, claster.Center) - averageDistTo, 2);
             }
             disperse = sum / claster.Points.Count();
             return disperse;
@@ -133,13 +133,13 @@ namespace Lab2
 
         private (double, double) FindMinMaxDistance(Claster claster)
         {
-            double min = claster.Points.Any() ? GetDistance(claster.Points.ElementAt(0), claster.Z) : 0;
-            double max = claster.Points.Any() ? GetDistance(claster.Points.ElementAt(0), claster.Z) : 0;
+            double min = claster.Points.Any() ? GetDistance(claster.Points.ElementAt(0), claster.Center) : 0;
+            double max = claster.Points.Any() ? GetDistance(claster.Points.ElementAt(0), claster.Center) : 0;
             double distance;
 
             foreach (Point point in points)
             {
-                distance = GetDistance(point, claster.Z);
+                distance = GetDistance(point, claster.Center);
                 if(distance > max)
                 {
                     max = distance;

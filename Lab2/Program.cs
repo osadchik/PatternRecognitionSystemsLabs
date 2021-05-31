@@ -1,4 +1,4 @@
-﻿using Lab2.Models;
+﻿using Common.Models;
 using System;
 using System.Collections.Generic;
 
