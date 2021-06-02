@@ -7,7 +7,7 @@ namespace Lab4
 {
     class BayesMethod
     {
-        public IEnumerable<(Matrix, Matrix)> FindDecisiveFunction(IEnumerable<Cluster> clasters)
+        public IEnumerable<(string, Matrix, Matrix)> FindDecisiveFunction(IEnumerable<Cluster> clasters)
         {
             List<Matrix> sampleMeanList = new List<Matrix>();
             List<Matrix> covariantMatrixList = new List<Matrix>();
@@ -27,12 +27,12 @@ namespace Lab4
                 freeCoefficient = sampleMeanList[i] * 0.5 * covariantMatrixList[i].Inverse() * sampleMeanList[i].Transpose() * (-1);
                 functionVariables.Add((argumentCoefficientMatrix, freeCoefficient));
             }
-            List<(Matrix, Matrix)> result = new List<(Matrix, Matrix)>();
+            List<(string, Matrix, Matrix)> result = new List<(string, Matrix, Matrix)>();
             for (int i = 0; i < functionVariables.Count - 1; i++)
             {
                 for (int j = i + 1; j < functionVariables.Count; j++)
                 {
-                    result.Add((FormatResult(functionVariables[i].Item1 - functionVariables[j].Item1),
+                    result.Add(($"d{i+1}-d{j+1} =", FormatResult(functionVariables[i].Item1 - functionVariables[j].Item1),
                         FormatResult(functionVariables[i].Item2 - functionVariables[j].Item2)));
                 }
             }

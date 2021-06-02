@@ -57,7 +57,7 @@ namespace Lab5
                     clusters = new List<Cluster>(clusterList);
                 }
 
-                if (i % 2 == 0 && numberOfClusters >= 2 * k)
+                if (i % 2 == 0 || numberOfClusters >= 2 * k)
                 {
                     var distances = FindDistanceBetweenClasterCenters(clusters);
                     var ranked = PerformRanking(qC, distances, l).Select(r => (r.Item1, r.Item2));
@@ -186,8 +186,9 @@ namespace Lab5
 
         Cluster MergeClusters(Cluster cluster1, Cluster cluster2)
         {
-            var newX = 1 / (cluster1.Points.Count + cluster2.Points.Count) * (cluster1.Center.X * cluster1.Points.Count + cluster2.Center.X * cluster2.Points.Count);
-            var newY = 1 / (cluster1.Points.Count + cluster2.Points.Count) * (cluster1.Center.Y * cluster1.Points.Count + cluster2.Center.Y * cluster2.Points.Count);
+            var coefficient = 1 / (cluster1.Points.Count + cluster2.Points.Count);
+            var newX = coefficient * (cluster1.Center.X * cluster1.Points.Count + cluster2.Center.X * cluster2.Points.Count);
+            var newY = coefficient * (cluster1.Center.Y * cluster1.Points.Count + cluster2.Center.Y * cluster2.Points.Count);
             return new Cluster(new Point(newX, newY));
         }
 

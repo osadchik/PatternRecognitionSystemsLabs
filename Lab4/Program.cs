@@ -10,10 +10,9 @@ namespace Lab4
         {
             BayesMethod bayesMethod = new BayesMethod();
             Cluster[] clasters;
-            IEnumerable<(Matrix, Matrix)> result;
+            IEnumerable<(string, Matrix, Matrix)> result;
 
-            Console.WriteLine("1st Variant");
-            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine("1st Variant:");
             clasters = new Cluster[]
             {
                 new Cluster(new Point[]
@@ -36,16 +35,9 @@ namespace Lab4
                 })
             };
             result = bayesMethod.FindDecisiveFunction(clasters);
+            ShowResult(result);
 
-            //int counter = 1;
-            //foreach (var function in parameters)
-            //{
-            //    Console.WriteLine($"d{counter}(x1, x2) = {function.Item1.Array[0, 0]}x1+({function.Item1.Array[1, 0]}x2)+({function.Item2.Array[0, 0]})");
-            //    counter++;
-            //}
-
-            Console.WriteLine("2nd Variant");
-            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine("2nd Variant:");
 
             clasters = new Cluster[]
             {
@@ -83,9 +75,9 @@ namespace Lab4
             };
 
             result = bayesMethod.FindDecisiveFunction(clasters);
+            ShowResult(result);
 
-            Console.WriteLine("3d Variant");
-            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine("3d Variant:");
 
             clasters = new Cluster[]
             {
@@ -124,8 +116,19 @@ namespace Lab4
             };
 
             result = bayesMethod.FindDecisiveFunction(clasters);
+            ShowResult(result);
 
             Console.ReadKey();
+        }
+
+        static void ShowResult(IEnumerable<(string, Matrix, Matrix)> result)
+        {
+            int counter = 0;
+            foreach (var item in result)
+            {
+                Console.WriteLine($"{item.Item1} {item.Item2.Array[0, 0]}x1+({item.Item2.Array[1, 0]}x2)+({item.Item3.Array[0, 0]})");
+            }
+            Console.WriteLine();
         }
     }
 }
