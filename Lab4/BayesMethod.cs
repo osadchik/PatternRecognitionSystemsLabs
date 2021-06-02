@@ -7,7 +7,7 @@ namespace Lab4
 {
     class BayesMethod
     {
-        public IEnumerable<(Matrix, Matrix)> FindDecisiveFunction(IEnumerable<Claster> clasters)
+        public IEnumerable<(Matrix, Matrix)> FindDecisiveFunction(IEnumerable<Cluster> clasters)
         {
             List<Matrix> sampleMeanList = new List<Matrix>();
             List<Matrix> covariantMatrixList = new List<Matrix>();

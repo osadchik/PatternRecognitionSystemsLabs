@@ -9,14 +9,14 @@ namespace Lab4
         static void Main(string[] args)
         {
             BayesMethod bayesMethod = new BayesMethod();
-            Claster[] clasters;
+            Cluster[] clasters;
             IEnumerable<(Matrix, Matrix)> result;
 
             Console.WriteLine("1st Variant");
             Console.WriteLine("-------------------------------------------------------------------------");
-            clasters = new Claster[]
+            clasters = new Cluster[]
             {
-                new Claster(new Point[]
+                new Cluster(new Point[]
                 {
                     new Point(5, 6),
                     new Point(3, 2),
@@ -24,7 +24,7 @@ namespace Lab4
                     new Point(4, -1),
                     new Point(0, 5)
                 }),
-                new Claster(new Point[]
+                new Cluster(new Point[]
                 {
                     new Point(-3, -4),
                     new Point(-1, -2),
@@ -47,9 +47,9 @@ namespace Lab4
             Console.WriteLine("2nd Variant");
             Console.WriteLine("-------------------------------------------------------------------------");
 
-            clasters = new Claster[]
+            clasters = new Cluster[]
             {
-                new Claster(new Point[]
+                new Cluster(new Point[]
                 {
                     new Point(2, 4),
                     new Point(3, 2),
@@ -66,7 +66,7 @@ namespace Lab4
                     new Point(4, 0),
                     new Point(0, 3)
                 }),
-                new Claster(new Point[]
+                new Cluster(new Point[]
                 {
                     new Point(-4, -2),
                     new Point(-1, -3),
@@ -87,9 +87,9 @@ namespace Lab4
             Console.WriteLine("3d Variant");
             Console.WriteLine("-------------------------------------------------------------------------");
 
-            clasters = new Claster[]
+            clasters = new Cluster[]
             {
-                new Claster(new Point[]
+                new Cluster(new Point[]
                 {
                     new Point(-3, -4),
                     new Point(-2, -4),
@@ -97,14 +97,14 @@ namespace Lab4
                     new Point(1, -5),
                     new Point(0, -3)
                 }),
-                new Claster(new Point[]
+                new Cluster(new Point[]
                 {
                     new Point(-3.5, -2.8),
                     new Point(-3, 2),
                     new Point(-3, -3),
                     new Point(-2, 0)
                 }),
-                new Claster(new Point[]
+                new Cluster(new Point[]
                 {
                     new Point(2, 4),
                     new Point(0, 5),

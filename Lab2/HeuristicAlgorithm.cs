@@ -8,7 +8,7 @@ namespace Lab2
     class HeuristicAlgorithm
     {
         private readonly List<Point> points;
-        private readonly List<Claster> clasters = new List<Claster>();
+        private readonly List<Cluster> clasters = new List<Cluster>();
         private readonly Point firstZ;
         public IEnumerable<int> T = new List<int>();
         public HeuristicAlgorithm(FirstMethod firstMethod, IEnumerable<Point> points)
@@ -40,11 +40,11 @@ namespace Lab2
                 {
                     if (!clasters.Any())
                     {
-                        clasters.Add(new Claster(new List<Point>(), firstZ));
+                        clasters.Add(new Cluster(new List<Point>(), firstZ));
                         continue;
                     }
                     bool isInClaster = false;
-                    foreach (Claster claster in clasters)
+                    foreach (Cluster claster in clasters)
                     {
                         xMinusZ = point - claster.Center;
                         d = Math.Sqrt(Math.Pow(xMinusZ.X, 2) + Math.Pow(xMinusZ.Y, 2));
@@ -57,10 +57,10 @@ namespace Lab2
                     }
                     if(!isInClaster)
                     {
-                        clasters.Add(new Claster(new List<Point>(), point));
+                        clasters.Add(new Cluster(new List<Point>(), point));
                     }
                 }
-                foreach (Claster claster in clasters)
+                foreach (Cluster claster in clasters)
                 {
                     Console.Write($"Claster with a center in ({claster.Center.X}, {claster.Center.Y}) has points: ");
                     if (!claster.Points.Any())
@@ -108,7 +108,7 @@ namespace Lab2
             }
         }
 
-        private double GetAverageDistance(Claster claster)
+        private double GetAverageDistance(Cluster claster)
         {
             double sum = 0.0, distance;
             foreach (Point point in claster.Points)
@@ -120,7 +120,7 @@ namespace Lab2
             return sum / claster.Points.Count();
         }
 
-        private double FindDisperse(Claster claster, double averageDistTo)
+        private double FindDisperse(Cluster claster, double averageDistTo)
         {
             double sum = 0.0, disperse;
             foreach (Point point in claster.Points)
@@ -131,7 +131,7 @@ namespace Lab2
             return disperse;
         }
 
-        private (double, double) FindMinMaxDistance(Claster claster)
+        private (double, double) FindMinMaxDistance(Cluster claster)
         {
             double min = claster.Points.Any() ? GetDistance(claster.Points.ElementAt(0), claster.Center) : 0;
             double max = claster.Points.Any() ? GetDistance(claster.Points.ElementAt(0), claster.Center) : 0;
